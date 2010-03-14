@@ -67,8 +67,6 @@ let () =
   let minx_win, miny_win = mapform_proj4 merc (normalize_longitude minx) miny in
   let maxx_win, maxy_win = mapform_proj4 merc (normalize_longitude maxx) maxy in
 
-  printf "%f, %f, %f, %f\n%!" minx_win miny_win maxx_win maxy_win;
-
   plcol0 1;
   pllsty 1;
   plenv minx_win maxx_win miny_win maxy_win 1 (-1);
