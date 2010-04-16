@@ -54,7 +54,7 @@ let () =
 
   plinit();
 
-  (* The Americas w/transform *)
+  (* Transverse Mercator *)
   let minx = -125.0 in
   let maxx = -60.0 in
 
@@ -79,7 +79,36 @@ let () =
   plmeridians 10.0 10.0 0.0 360.0 (-10.0) 80.0;
 
   plcol0 1;
-  pllab "" "" "Transverse Mercator Projection of the USA";
+  pllab "" "" "Transverse Mercator Projection";
+
+  (* Lambert Azimuthal Equal Area Transform *)
+  let min_lon = -180.0 in
+  let max_lon = 180.0 in
+
+  let min_lat = 0.0 in
+  let max_lat = 90.0 in
+
+  (* ortho projection. *)
+  let ortho = pj_init [|"proj=laea"; "lon_0=100w"; "lat_0=90"|] in
+
+  let minx_win, _ = mapform_proj4 ortho ~-.180.0 20.0 in
+  let maxx_win, _ = mapform_proj4 ortho 0.0 20.0 in
+  let _, miny_win = mapform_proj4 ortho ~-.90.0 20.0 in
+  let _, maxy_win = mapform_proj4 ortho 90.0 20.0 in
+
+  plcol0 1;
+  pllsty 1;
+  plenv minx_win maxx_win miny_win maxy_win 1 (-1);
+  plset_mapform (mapform_proj4 ortho);
+  plmap "globe" min_lon max_lon min_lat max_lat;
+  (* This call to plmeridians is also after the set_mapform call, so it uses
+     the same projection as the plmap call above. *)
+  pllsty 2;
+  plcol0 10;
+  plmeridians 10.0 10.0 0.0 360.0 (-10.0) 80.0;
+
+  plcol0 1;
+  pllab "" "" "Lambert Azimuthal Equal Area Projection";
 
   plend ();
   ()
