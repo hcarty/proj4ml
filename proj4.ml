@@ -3,10 +3,11 @@
 (** Projection type *)
 type t
 
-external pj_init : string array -> t = "ml_pj_init"
-external pj_fwd : float array -> t -> float array = "ml_pj_fwd"
-external pj_inv : float array -> t -> float array = "ml_pj_inv"
-external pj_transform : t -> t -> int -> float array -> float array ->
-  float array -> float array * float array * float array =
-    "ml_pj_transform_byte" "ml_pj_transform"
+external pj_init_plus : string -> t = "ml_pj_init_plus"
+external pj_transform : t -> t -> float array -> float array ->
+  float array * float array = "ml_pj_transform"
+external pj_is_latlong : t -> bool = "ml_pj_is_latlong"
+external pj_is_geocent : t -> bool = "ml_pj_is_geocent"
+external pj_get_def : t -> string = "ml_pj_get_def"
+external pj_latlong_from_proj : t -> t = "ml_pj_latlong_from_proj"
 
