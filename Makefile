@@ -3,8 +3,8 @@ ANNOTATE = yes
 PACKS = 
 LIBS =
 OCAMLLIBPATH=
-INCDIRS=/home/hcarty/Applications/proj4/include
-LIBDIRS=/home/hcarty/Applications/proj4/lib
+INCDIRS=
+LIBDIRS=
 EXTLIBDIRS=
 
 CLIBS = proj m
