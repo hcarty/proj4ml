@@ -1,7 +1,0 @@
-# Specifications for the proj4ml
-description = "PROJ.4 library interface"
-version = "4.7.0"
-browse_interfaces = " PROJ.4 "
-archive(byte) = "proj4.cma"
-archive(native) = "proj4.cmxa"
-

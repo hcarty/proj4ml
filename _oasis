@@ -1,0 +1,19 @@
+OASISFormat: 0.3
+Name:        proj4ml
+Version:     4.7.0
+Synopsis:    OCaml bindings to the PROJ.4 projection library
+Authors:     Hezekiah M. Carty
+License:     MIT
+Plugins:     META (0.3), StdFiles (0.3), DevFiles (0.3)
+XStdFilesAUTHORS: false
+XStdFilesREADME: false
+
+Library proj4
+  Path:           src
+  BuildTools:     ocamlbuild
+  Modules:        Proj4
+  CSources:       proj4_stubs.c
+  CCLib:          -lproj -lm
+  CCOpt:          -O2
+  CompiledObject: best
+
