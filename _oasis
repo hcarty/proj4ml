@@ -1,6 +1,6 @@
 OASISFormat: 0.3
 Name:        proj4ml
-Version:     4.7.0
+Version:     0.9.0
 Synopsis:    OCaml bindings to the PROJ.4 projection library
 Authors:     Hezekiah M. Carty
 License:     MIT
