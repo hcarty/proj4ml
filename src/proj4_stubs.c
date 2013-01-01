@@ -112,6 +112,60 @@ value ml_pj_transform( value src, value dst, value x, value y ) {
     CAMLreturn(packed_coords);
 }
 
+// Convert single coordinate pair from one coordinate projection to another
+value ml_pj_transform_one( value src, value dst, value x, value y ) {
+    CAMLparam4( src, dst, x, y );
+
+    CAMLlocal1( packed_coords );
+
+    int result;
+    double xt, yt;
+
+    xt = Double_val(x);
+    yt = Double_val(y);
+
+    result = pj_transform( PJ_val(src), PJ_val(dst), 1, 1, &xt, &yt, NULL );
+
+    if ( result != 0 ) {
+        char exception_message[MAX_EXCEPTION_MESSAGE_LENGTH];
+        sprintf(exception_message, "pj_transform");
+        caml_invalid_argument(exception_message);
+    }
+
+    packed_coords = caml_alloc(2 * Double_wosize, Double_array_tag);
+    Store_double_field(packed_coords, 0, xt);
+    Store_double_field(packed_coords, 1, yt);
+
+    CAMLreturn(packed_coords);
+}
+
+// Convert single coordinate pair from one coordinate projection to another
+value ml_pj_transform_one_tuple( value src, value dst, value x, value y ) {
+    CAMLparam4( src, dst, x, y );
+
+    CAMLlocal1( packed_coords );
+
+    int result;
+    double xt, yt;
+
+    xt = Double_val(x);
+    yt = Double_val(y);
+
+    result = pj_transform( PJ_val(src), PJ_val(dst), 1, 1, &xt, &yt, NULL );
+
+    if ( result != 0 ) {
+        char exception_message[MAX_EXCEPTION_MESSAGE_LENGTH];
+        sprintf(exception_message, "pj_transform");
+        caml_invalid_argument(exception_message);
+    }
+
+    packed_coords = caml_alloc(2, 0);
+    Store_field(packed_coords, 0, caml_copy_double(xt));
+    Store_field(packed_coords, 1, caml_copy_double(yt));
+
+    CAMLreturn(packed_coords);
+}
+
 // Advanced functions from the PROJ.4 API
 
 value ml_pj_is_latlong( value proj ) {
