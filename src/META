@@ -1,6 +1,6 @@
 # OASIS_START
-# DO NOT EDIT (digest: 9e6a2ecfcc95bae3faa9ccf704692313)
-version = "4.7.0"
+# DO NOT EDIT (digest: 3f8f7d0f4f55bd779f2e14f4cc50fe04)
+version = "0.9.0"
 description = "OCaml bindings to the PROJ.4 projection library"
 archive(byte) = "proj4.cma"
 archive(byte, plugin) = "proj4.cma"
