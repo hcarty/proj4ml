@@ -10,6 +10,10 @@ type trans_t = {
 val init_plus : string -> t
 (** [init_plus def] creates a projection based on the specs in [def]. *)
 
+val is_valid : string -> bool
+(** [is_valid def] checks to see if the specs in [def] make a valid
+    projection. *)
+
 val transform :
   t -> t -> float array -> float array -> float array * float array
 (** [transform src dest xs ys] transforms the points [xs], [ys]

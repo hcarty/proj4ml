@@ -20,3 +20,10 @@ external is_geocent : t -> bool = "ml_pj_is_geocent"
 external get_def : t -> string = "ml_pj_get_def"
 external latlong_from_proj : t -> t = "ml_pj_latlong_from_proj"
 
+let is_valid s =
+  try
+    ignore (init_plus s);
+    true
+  with
+  | Invalid_argument _ -> false
+
