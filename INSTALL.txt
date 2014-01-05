@@ -1,9 +1,9 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: daa5617bf0c19c65816175c80cfc9a18) *)
+(* DO NOT EDIT (digest: 2f202f24a80d4dc53490ab41e55c628c) *)
 This is the INSTALL file for the proj4ml distribution.
 
 This package uses OASIS to generate its build system. See section OASIS for
-full information. 
+full information.
 
 Dependencies
 ============
@@ -23,7 +23,7 @@ Installing
 Uninstalling
 ============
 
-1. Go to the root of the package 
+1. Go to the root of the package
 2. Run 'ocaml setup.ml -uninstall'
 
 OASIS
