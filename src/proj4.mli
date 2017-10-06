@@ -34,9 +34,10 @@ type errcode =
   | PJD_ERR_MISSING_ARGS
   | PJD_ERR_LAT_0_IS_ZERO
   | UNKNOWN_ERRCODE
-(** Error codes (taken from projects.h in the source dist. of PROJ.4). *)
+(** Error codes (taken from projects.h in the source distribution of PROJ.4). *)
 
 exception Proj4_ERR of int
+(** Exception raised by *)
 
 type trans_t = {
   xt : float;
@@ -78,7 +79,7 @@ val latlong_from_proj : t -> t
     [t]. *)
 
 val errcode_of_int : int -> errcode
-(** [errcode_of_int i] converts the PROJ.4 error code [i] into human-readable form. *)
+(** [errcode_of_int i] converts the PROJ.4 error code [i] into type [errcode]. *)
   
 val string_of_errcode : errcode -> string
 (** [string_of_errcode e] converts the error code [e] into a string. *)
