@@ -72,6 +72,7 @@ value ml_pj_init_plus( value args ) {
     CAMLreturn( Val_PJ( projection ) );
 }
 
+
 // Convert coordinates from one coordinate projection to another
 value ml_pj_transform( value src, value dst, value x, value y ) {
     CAMLparam4( src, dst, x, y );
@@ -100,9 +101,7 @@ value ml_pj_transform( value src, value dst, value x, value y ) {
                            (double *)xt, (double *)yt, NULL );
 
     if ( result != 0 ) {
-        char exception_message[MAX_EXCEPTION_MESSAGE_LENGTH];
-        sprintf(exception_message, "pj_transform");
-        caml_invalid_argument(exception_message);
+        caml_raise_with_arg(*caml_named_value("Proj4_ERR"), Val_int(result)); 
     }
 
     packed_coords = caml_alloc(2, 0);
@@ -127,9 +126,7 @@ value ml_pj_transform_one( value src, value dst, value x, value y ) {
     result = pj_transform( PJ_val(src), PJ_val(dst), 1, 1, &xt, &yt, NULL );
 
     if ( result != 0 ) {
-        char exception_message[MAX_EXCEPTION_MESSAGE_LENGTH];
-        sprintf(exception_message, "pj_transform");
-        caml_invalid_argument(exception_message);
+        caml_raise_with_arg(*caml_named_value("Proj4_ERR"), Val_int(result));  
     }
 
     packed_coords = caml_alloc(2 * Double_wosize, Double_array_tag);
@@ -154,9 +151,7 @@ value ml_pj_transform_one_tuple( value src, value dst, value x, value y ) {
     result = pj_transform( PJ_val(src), PJ_val(dst), 1, 1, &xt, &yt, NULL );
 
     if ( result != 0 ) {
-        char exception_message[MAX_EXCEPTION_MESSAGE_LENGTH];
-        sprintf(exception_message, "pj_transform");
-        caml_invalid_argument(exception_message);
+        caml_raise_with_arg(*caml_named_value("Proj4_ERR"), Val_int(result));         
     }
 
     packed_coords = caml_alloc(2, 0);
