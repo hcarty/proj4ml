@@ -4,6 +4,10 @@
  *
  */
 
+/* Required on versions of proj.
+ */
+#define ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
+
 /* The "usual" OCaml includes */
 #include <caml/alloc.h>
 #include <caml/callback.h>
@@ -36,12 +40,13 @@ void finalize_projection(value ml_projection) {
 
 // Definition for custom OCaml handler functions
 static struct custom_operations projection_custom_ops = {
-    identifier: "projection handling",
-    finalize: finalize_projection,
-    compare: custom_compare_default,
-    hash: custom_hash_default,
-    serialize: custom_serialize_default,
-    deserialize: custom_deserialize_default
+    "projection handling",
+    finalize_projection,
+    custom_compare_default,
+    custom_hash_default,
+    custom_serialize_default,
+    custom_deserialize_default,
+    NULL,			/* compare_ext */
 };
 
 value Val_PJ(projPJ *p) {
